@@ -3,8 +3,10 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body table-responsive">
+                    <?php if($access > 0){ ?>
                     <a href="<?= base_url('mhs/new-logbook') ?>" class="btn btn-sm btn-success mb-3"><i
                             class="fa fa-plus"></i></a>
+                    <?php } ?>
                     <table class="table table-bordered table-sm w-100" id="my-table">
                         <thead>
                             <tr class="table-dark">

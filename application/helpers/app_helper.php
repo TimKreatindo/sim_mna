@@ -130,3 +130,37 @@ function cek_tgl($elem)
         echo date_format($d, 'd F Y');
     }
 }
+
+function check_access_group(){
+    $t = get_instance();
+    $role = $t->session->userdata('id_role');
+    $email = $t->session->userdata('email');
+
+    if($role == 3){
+        //mahasiswa
+        $q_data =   $t->db->select('group_mahasiswa.*')
+                ->from('group_mahasiswa')
+                ->join('tbl_group', 'group_mahasiswa.id_group = tbl_group.id')
+                ->join('user', 'group_mahasiswa.id_user = user.id')
+                ->where('user.email', $email)
+                ->where('user.is_active', 1)
+                ->get()
+                ->num_rows();
+      
+    } else if($role == 9) {
+        //pemlap
+        $q_data =   $t->db->select('group_pemlap.*')
+                ->from('group_pemlap')
+                ->join('tbl_group', 'group_pemlap.id_group = tbl_group.id')
+                ->join('user', 'group_pemlap.id_user = user.id')
+                ->where('user.email', $email)
+                ->where('user.is_active', 1)
+                ->get()
+                ->num_rows();
+       
+    } else {
+        $q_data = 0;
+    }
+
+    return $q_data;
+}

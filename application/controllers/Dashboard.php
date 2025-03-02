@@ -54,12 +54,17 @@ class Dashboard extends CI_Controller
             'user' => get_user(),
             'view' => 'mhs/my_logbook',
             'js' => ['logbook_mhs'],
+            'access' => check_access_group()
         ];
         $this->load->view('index', $data);
     }
 
     public function add_mhs_logbook()
     {
+        $access = check_access_group();
+        if($access < 1){
+            redirect('auth/blocked');
+        }
        
         $data = [
             'title' => 'Logbook Baru',
@@ -73,6 +78,11 @@ class Dashboard extends CI_Controller
 
     public function detail_mhs_logbook($id = null)
     {
+
+        $access = check_access_group();
+        if($access < 1){
+            redirect('auth/blocked');
+        }
        
         if ($id) {
             $user = get_user();
@@ -95,6 +105,11 @@ class Dashboard extends CI_Controller
 
     public function mhs_edit_logbook($id = null)
     {
+
+        $access = check_access_group();
+        if($access < 1){
+            redirect('auth/blocked');
+        }
      
         if ($id) {
             $user = get_user();
@@ -193,6 +208,8 @@ class Dashboard extends CI_Controller
     {
         
         $user = get_user();
+        $access = check_access_group();
+        
         if ($user->id_role == 2 || $user->id_role == 1) {
             $data = [
                 'title' => 'Laporan Pembimbing',
@@ -205,7 +222,8 @@ class Dashboard extends CI_Controller
                 'title' => 'Laporan Pembimbing',
                 'user' => $user,
                 'view' => 'dpl/index_laporan',
-                'js' => ['lap_pemlap']
+                'js' => ['lap_pemlap'],
+                'access' => $access
             ];
         }
 
@@ -214,6 +232,11 @@ class Dashboard extends CI_Controller
 
     public function add_report()
     {
+
+        $access = check_access_group();
+        if($access < 1){
+            redirect('auth/blocked');
+        }
         
         $data = [
             'title' => 'Tambah Laporan',
@@ -227,6 +250,11 @@ class Dashboard extends CI_Controller
 
     public function detail_report($id = null)
     {
+
+        $access = check_access_group();
+        if($access < 1){
+            redirect('auth/blocked');
+        }
        
         if ($id) {
             $user = get_user();
@@ -249,6 +277,11 @@ class Dashboard extends CI_Controller
 
     public function edit_report($id = null)
     {
+
+        $access = check_access_group();
+        if($access < 1){
+            redirect('auth/blocked');
+        }
      
         if ($id) {
             $user = get_user();
