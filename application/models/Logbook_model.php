@@ -202,7 +202,7 @@ class Logbook_model extends CI_Model
 
 
     //load data pemlap di menu laporan pembimbing
-    private function q_list_pemlap()
+    private function q_list_pemlap($role = null)
     {
         $this->db->select('
             user.id,
@@ -214,11 +214,15 @@ class Logbook_model extends CI_Model
             ->join('group_pemlap', 'user.id = group_pemlap.id_user')
             ->join('tbl_group', 'tbl_group.id = group_pemlap.id_group')
             ->where('user.id_role', 9);
+
+            if($role){
+                $this->db->where('tbl_group.id_dosen', $role);
+            }
     }
 
-    private function filter_list_pemlap()
+    private function filter_list_pemlap($role = null)
     {
-        $this->q_list_pemlap();
+        $this->q_list_pemlap($role);
         $search = ['nama_lengkap', 'email', 'instansi_magang', 'alamat_magang'];
         $i = 0;
         foreach ($search as $item) {
@@ -238,25 +242,25 @@ class Logbook_model extends CI_Model
         }
     }
 
-    public function get_list_pemlap()
+    public function get_list_pemlap($role = null)
     {
-        $this->filter_list_pemlap();
+        $this->filter_list_pemlap($role);
         if ($_POST['length'] != -1)
             $this->db->limit($_POST['length'], $_POST['start']);
         $query = $this->db->get();
         return $query->result();
     }
 
-    public function c_filter_pemlap()
+    public function c_filter_pemlap($role = null)
     {
-        $this->filter_list_pemlap();
+        $this->filter_list_pemlap($role);
         $query = $this->db->get();
         return $query->num_rows();
     }
 
-    public function c_all_report()
+    public function c_all_report($role = null)
     {
-        $this->q_list_pemlap();
+        $this->q_list_pemlap($role);
         return $this->db->count_all_results();
     }
 }
