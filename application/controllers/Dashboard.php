@@ -146,7 +146,8 @@ class Dashboard extends CI_Controller
         } else if ($user->id_role == 2 || $user->id_role == 9) {
             $query_data = $this->db->select('periode.id AS id_periode, periode.periode, tbl_group.id AS id_group,  tbl_group.nama_group')->from('periode')->join('tbl_group', 'periode.id = tbl_group.id_periode')->get()->result();
             $data_filter = [
-                'main_filter' => $query_data
+                'group' => $query_data,
+                'periode' => $this->db->get('periode')->result()
             ];
         } else {
             $data_filter = [];

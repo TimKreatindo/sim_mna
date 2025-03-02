@@ -34,23 +34,24 @@
                         </div>
                     </div>
                     <?php } else if($user->id_role == 2 || $user->id_role == 9){ 
-                        $main_filter = $filter['main_filter'];    
+                        $filter_group = $filter['group'];    
+                        $filter_periode = $filter['periode'];    
                     ?>
                     <div class="row align-items-center">
                         <div class="col-sm-12 col-md-5 mb-3">
                             <label><b>Periode</b></label>
                             <select name="periode" id="periode" class="form-control">
                                 <option value="">--pilih--</option>
-                                <?php foreach($main_filter as $mf){
-                                    echo '<option value="'.$mf->id_periode.'">'.$mf->periode.'</option>';
-                                } ?>
+                                <?php foreach($filter_periode as $fp){ ?>
+                                <option value="<?= $fp->id ?>"><?= $fp->periode ?></option>
+                                <?php } ?>
                             </select>
                         </div>
                         <div class="col-sm-12 col-md-5 mb-3">
                             <label><b>Group</b></label>
                             <select name="group" id="group" class="form-control">
                                 <option value="">--pilih--</option>
-                                <?php foreach($main_filter as $mff){
+                                <?php foreach($filter_group as $mff){
                                     echo '<option value="'.$mff->id_group.'">'.$mff->nama_group.'</option>';
                                 } ?>
                             </select>
