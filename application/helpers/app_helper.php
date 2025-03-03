@@ -59,9 +59,9 @@ function check_admin()
     // var_dump($merge_url, $access_url, $access_menu, $role);
     // die;
     if($access_menu < 1){
-        // if($access_url < 1){
+        if($access_url < 1){
             redirect('auth/blocked');
-        // }
+        }
     }
 }
 

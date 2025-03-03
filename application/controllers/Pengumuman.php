@@ -4,7 +4,7 @@ class Pengumuman extends CI_Controller
 {
     public function index()
     {
-
+        check_admin();
         $role = $this->session->userdata('id_role');
         $data = [
             'title' => 'Pengumuman',
@@ -33,6 +33,7 @@ class Pengumuman extends CI_Controller
     }
     public function tambah()
     {
+        check_admin();
         $data = [
             'title' => 'Tambah Pengumuman',
             'user' => get_user(),
@@ -94,6 +95,7 @@ class Pengumuman extends CI_Controller
     }
     public function edit($id)
     {
+        check_admin();
         $data = [
             'title' => 'Pengumuman',
             'user' => get_user(),
