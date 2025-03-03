@@ -811,7 +811,13 @@ class Ajax_logbook extends CI_Controller
     public function load_data_report()
     {
         cek_ajax();
-        $get_data = $this->logbook->get_list_pemlap();
+        $user = get_user();
+        if($user->id_role == 1){
+            $role = null;
+        } else {
+            $role = $user->id_user;
+        }
+        $get_data = $this->logbook->get_list_pemlap($role);
         $data = [];
         $i = 1;
         foreach ($get_data as $gd) {
@@ -829,8 +835,8 @@ class Ajax_logbook extends CI_Controller
 
         $output = [
             "draw" => $_POST['draw'],
-            "recordsTotal" => $this->logbook->c_all_report(),
-            "recordsFiltered" => $this->logbook->c_filter_pemlap(),
+            "recordsTotal" => $this->logbook->c_all_report($role),
+            "recordsFiltered" => $this->logbook->c_filter_pemlap($role),
             "data" => $data,
         ];
         json_output(200, $output);
