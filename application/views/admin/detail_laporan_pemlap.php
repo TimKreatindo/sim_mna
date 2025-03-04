@@ -57,10 +57,10 @@
                     <div class="my-3">
                         <small class="text-danger">* harus diisi jika ada revisi</small>
                         <textarea name="notes" id="notes" class="form-control mb-2" rows="4"></textarea>
-                        <button type="button" class="btn btn-sm btn-danger" onclick="accept_report('<?= $id ?>')"><i
+                        <button type="button" class="btn btn-sm btn-danger" onclick="reject_report('<?= $id ?>')"><i
                                 class="fas fa-times"></i>
                             Tolak</button>
-                        <button type="button" class="btn btn-sm btn-success" onclick="reject_report('<?= $id ?>')"><i
+                        <button type="button" class="btn btn-sm btn-success" onclick="accept_report('<?= $id ?>')"><i
                                 class="fas fa-check"></i>
                             Terima</button>
                     </div>

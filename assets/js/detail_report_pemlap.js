@@ -1,9 +1,9 @@
 function accept_report(id) {
-	const stat = 1;
+	let stat = 1;
 	ajax_act_report(id, stat);
 }
 function reject_report(id) {
-	const stat = 0;
+	let stat = 0;
 	ajax_act_report(id, stat);
 }
 

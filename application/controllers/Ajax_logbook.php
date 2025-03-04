@@ -909,7 +909,7 @@ class Ajax_logbook extends CI_Controller
         $get_data = $this->db->where('sha1(id)', $id)->get('log_pemlap')->row();
 
         if ($get_data) {
-            if ($status === 1) {
+            if ($status == 1) {
                 $update_status = 'accepted';
                 $message = 'setujui';
             } else {
